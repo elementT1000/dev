@@ -1,0 +1,8 @@
+neural_networks/Anterior_Frontal/labeled-data/
+neural_networks/Posterior_Frontal/labeled-data/
+neural_networks/Sagittal/labeled-data/
+neural_networks/Anterior_Frontal/videos/
+neural_networks/Posterior_Frontal/videos/
+neural_networks/Sagittal/videos/
+*.pyc
+pgr_ml/PGR_Dataset_1/
