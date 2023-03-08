@@ -20,7 +20,7 @@ from sklearn.metrics import classification_report, confusion_matrix, f1_score
 import joblib
 
 
-df = pd.read_csv(r'C:\Users\trott\pgr_ml\PGR_Dataset_1\training_sets\Left Leg Labels\LL - RunLabAnterior Frontal Plane_Sagittal Plane Left_Sagittal Plane Right_Posterior Frontal Planetraining_set.csv')
+df = pd.read_csv(r'PGR_Dataset_1\training_sets\RL - RunLabtraining_set_2.csv')
 #print(df.shape)
 
 # get rid of error frames b/c they do not reflect reality
@@ -136,7 +136,7 @@ print(classification_report(y_test, y_pred))
 #################################################################################
 # Store the trained model
 
-filename = r'C:\Users\trott\pgr_ml\PGR_Dataset_1\leftleg_runlab_model_21323.sav'
+filename = r'PGR_Dataset_1\training_sets\rightleg_runlab_model_030823.sav'
 print("Confirmed to have passed the save line.")
 joblib.dump(extra_trees, filename)
 

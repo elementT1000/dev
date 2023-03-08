@@ -33,7 +33,7 @@ def csv_label_filter(csv_file: str, planes, label_system: str):
 df_list = []
 
 plns = ['Sagittal Plane Left', 'Sagittal Plane Right', 'Posterior Frontal Plane', 'Anterior Frontal Plane']
-ls = 'RL - RunLab'
+ls = 'LL - RunLab'
 
 for i, f in enumerate(files, start=0):
     df = csv_label_filter(csv_file=f, planes=plns, label_system=ls)
@@ -43,6 +43,6 @@ for i, f in enumerate(files, start=0):
 
 master_df = pd.concat(df_list, axis=0, ignore_index=True)
 #filename_planes = "_".join(plns)
-filename = ls + "training_set.csv"
+filename = ls + "training_set_2.csv"
 print(filename + " is complete.")
 master_df.to_csv("PGR_Dataset_1/training_sets/" + filename, index=False)
