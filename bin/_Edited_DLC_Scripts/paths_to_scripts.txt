@@ -1,2 +1,9 @@
-angle finder = [HOME]\anaconda3\envs\DEEPLABCUT\Lib\site-packages\deeplabcut\post_processing\angle_finder.py
-write angles with OpenCV = [HOME]\anaconda3\envs\DEEPLABCUT\Lib\site-packages\deeplabcut\utils\write_angles.py
+[HOME]\anaconda3\envs\DEEPLABCUT\Lib\site-packages\deeplabcut\post_processing\angle_finder.py
+	-angle finder
+[HOME]\anaconda3\envs\DEEPLABCUT\Lib\site-packages\deeplabcut\utils\write_angles.py
+	-write angles with OpenCV 
+[HOME]\anaconda3\envs\DEEPLABCUT\Lib\site-packages\deeplabcut\utils
+	-auxiliaryfunctions.py
+	-make_labeled_video.py
+[HOME]\anaconda3\envs\DEEPLABCUT\Lib\site-packages\deeplabcut\post_processing
+	-filtering.py
