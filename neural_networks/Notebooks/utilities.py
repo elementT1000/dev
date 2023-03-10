@@ -5,9 +5,9 @@ home = os.environ["T4_DIR"]
 downloads = os.environ["DOWNLOADS"]
 
 config_dict = [
-    {'ANTERIOR': ['af_config.yaml', ["af"]]},
-    {'POSTERIOR': ['pf_config.yaml', ["pf"]]},
-    {'SAGITTAL': ['sag_config.yaml', ["sl", "sr"]]}
+    {'ANTERIOR': [r'Anterior_Frontal\af_config.yaml', ["af"]]},
+    {'POSTERIOR': [r'Posterior_Frontal\pf_config.yaml', ["pf"]]},
+    {'SAGITTAL': [r'Sagittal\sag_config.yaml', ["sl", "sr"]]}
 ]
 
 def get_value(key):

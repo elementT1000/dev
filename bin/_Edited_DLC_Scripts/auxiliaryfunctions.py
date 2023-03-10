@@ -368,7 +368,7 @@ def get_list_of_videos(
         for v in videos
         if os.path.isfile(v)
         and any(v.endswith(ext) for ext in videotype)
-        and "_labeled." not in v 
+        and "_labeled." not in v
         and "_full." not in v
     ]
 
