@@ -20,13 +20,15 @@ from sklearn.metrics import classification_report, confusion_matrix, f1_score
 import joblib
 
 
-df = pd.read_csv(r'PGR_Dataset_1\training_sets\RL - RunLabtraining_set_2.csv')
-#print(df.shape)
+df = pd.read_csv(r'PGR_Dataset_1\training_sets\LL - RunLabDouble60_031423.csv')
+print("Pre-drop")
+print(df.shape)
 
 # get rid of error frames b/c they do not reflect reality
 df_no_error = df[df.iloc[:, -1] != 'error']
-df_clean = df_no_error.dropna(subset=df_no_error.columns[-1])
-#print(df_clean.shape)
+df_clean = df_no_error.fillna(0)
+print("Post-drop")
+print(df_clean.shape)
 
 # Seperate the dependent and independent variables
 df_clean.columns = df_clean.columns.str.strip()
@@ -45,33 +47,35 @@ for key, value in counter1.items():
 # Split the dataset into train and test groups, 90/10 ratio
 X_train, X_test, y_train, y_test = train_test_split(X, y_enc, test_size=0.10, random_state=42)
 
-#Use a knn imputer to fill in blanks in the data
+'''#Use a knn imputer to fill in blanks in the data
+#This may be making bad data
 knn_imputer = KNNImputer(n_neighbors=5)
 #fit it to the data
 knn_imputer.fit(X_train)
 X_train = knn_imputer.transform(X_train)
-X_test = knn_imputer.transform(X_test)
+X_test = knn_imputer.transform(X_test)'''
 
 # Perform Synthetic Minority Oversampling TEchnique in order to synthetically balance the dataset
 # The n of each class is increased to match the n of the largest class
-'''over_strategy = {0: 600, 1: 600, 2: 600, 3: 600, 4: 1595, 5: 638, 6: 600, 7: 600}
+#TODO: Make a little function to sort the n, if it is greater than 600, keep n, if less than smote to 600
+over_strategy = {0: 600, 1: 600, 2: 910, 3: 600, 4: 2500, 5: 1180, 6: 600, 7: 600} #Consider that this is the training class, so there is a reduction in n by 10%
 oversample = SMOTE(sampling_strategy=over_strategy)
 under_strategy = {0: 600, 1: 600, 2: 600, 3: 600, 4: 600, 5: 600, 6: 600, 7: 600}
 undersample = RandomUnderSampler(sampling_strategy=under_strategy)
 
 # set up a pipline to perform both transformations
 steps = [('o', oversample), ('u', undersample)]
-pipeline = Pipeline(steps=steps)'''
+pipeline = Pipeline(steps=steps)
 # Perform Synthetic Minority Oversampling TEchnique in order to synthetically balance the dataset
-oversample = SMOTE()
-X_train, y_train = oversample.fit_resample(X_train, y_train)
+#oversample = SMOTE()
+#X_train, y_train = oversample.fit_resample(X_train, y_train)
 
 #oversample the training set
-# X_train, y_train = oversample.fit_resample(X_train, y_train)
+#X_train, y_train = oversample.fit_resample(X_train, y_train)
 #Oversmaple the whole set
 # X_smote, y_smote = oversample.fit_resample(X, y_enc)
 #Use over/under pipeline to create a balanced dataset
-#X_train, y_train = pipeline.fit_resample(X_train, y_train)
+X_train, y_train = pipeline.fit_resample(X_train, y_train)
 
 # Make sure that the classes have been balanced
 counter2 = Counter(y_train)
@@ -136,9 +140,9 @@ print(classification_report(y_test, y_pred))
 #################################################################################
 # Store the trained model
 
-filename = r'PGR_Dataset_1\training_sets\rightleg_runlab_model_030823.sav'
-print("Confirmed to have passed the save line.")
+filename = r'PGR_Dataset_1\Models\leftleg_Double60_031423.sav'
 joblib.dump(extra_trees, filename)
+print(filename)
 
 '''
 #to load the model and predict later
